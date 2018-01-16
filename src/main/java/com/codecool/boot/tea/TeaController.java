@@ -22,4 +22,9 @@ public class TeaController {
         this.service.save(tea);
         return tea;
     }
+
+    @DeleteMapping(path = "/{id}")
+    public void delete(@PathVariable Integer id) {
+        this.service.deleteById(id);
+    }
 }
