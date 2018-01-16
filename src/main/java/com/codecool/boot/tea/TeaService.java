@@ -1,4 +1,38 @@
 package com.codecool.boot.tea;
 
-public class TeaService {
+import com.codecool.boot.common.Service;
+
+@org.springframework.stereotype.Service
+public class TeaService implements Service<Tea>{
+
+    TeaRepository repository;
+
+    public TeaService(TeaRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public Iterable<Tea> findAll() {
+        return this.repository.findAll();
+    }
+
+    @Override
+    public Tea findOne(Integer id) {
+        return this.repository.findOne(id);
+    }
+
+    @Override
+    public Tea save(Tea tea) {
+        return this.repository.save(tea);
+    }
+
+    @Override
+    public void delete(Tea tea) {
+        this.repository.delete(tea);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        this.repository.delete(id);
+    }
 }
