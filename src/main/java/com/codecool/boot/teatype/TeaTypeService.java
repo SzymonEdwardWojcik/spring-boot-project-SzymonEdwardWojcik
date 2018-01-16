@@ -1,6 +1,9 @@
 package com.codecool.boot.teatype;
 
-public class TeaTypeService {
+import com.codecool.boot.common.Service;
+
+@org.springframework.stereotype.Service
+public class TeaTypeService implements Service<TeaType> {
 
     private TeaTypeRepository repository;
 
@@ -8,16 +11,29 @@ public class TeaTypeService {
         this.repository = repository;
     }
 
+    @Override
     public Iterable<TeaType> findAll() {
         return this.repository.findAll();
     }
 
+    @Override
     public TeaType findOne(Integer id) {
         return this.repository.findOne(id);
     }
 
+    @Override
     public TeaType save(TeaType teaType) {
         this.repository.save(teaType);
         return teaType;
+    }
+
+    @Override
+    public void delete(TeaType teaType) {
+        this.repository.delete(teaType);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        this.repository.delete(id);
     }
 }
