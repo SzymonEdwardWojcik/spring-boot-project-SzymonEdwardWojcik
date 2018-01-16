@@ -6,6 +6,7 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 
 @Entity
+@Table(name="TEAS")
 public class Tea {
 
     @Id
@@ -13,15 +14,9 @@ public class Tea {
     private Integer id;
     private String name;
     private Integer price;
-    @OneToOne
-    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
+    @ManyToOne
+    @JoinColumn(name="type_id")
     private TeaType teaType;
-
-    public Tea(String name, Integer price, TeaType teaType) {
-        this.name = name;
-        this.price = price;
-        this.teaType = teaType;
-    }
 
     public Integer getId() {
         return id;
