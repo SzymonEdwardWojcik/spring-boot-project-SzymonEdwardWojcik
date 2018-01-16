@@ -5,6 +5,6 @@ public interface Service<T> {
     Iterable<T> findAll();
     T findOne(Integer id);
     T save(T t);
-    void delete(T t);
+    T put(T t);
     void deleteById(Integer id);
 }
