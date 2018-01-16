@@ -27,8 +27,8 @@ public class TeaService implements Service<Tea>{
     }
 
     @Override
-    public void delete(Tea tea) {
-        this.repository.delete(tea);
+    public Tea put(Tea tea) {
+        return this.repository.save(tea);
     }
 
     @Override
