@@ -23,6 +23,11 @@ public class TeaController {
         return tea;
     }
 
+    @PutMapping(path = "")
+    public Tea put(@RequestBody Tea tea) {
+        return this.service.put(tea);
+    }
+
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable Integer id) {
         this.service.deleteById(id);
