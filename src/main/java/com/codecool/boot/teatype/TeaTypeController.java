@@ -27,4 +27,9 @@ public class TeaTypeController {
         this.service.save(teaType);
         return teaType;
     }
+
+    @DeleteMapping(path = "/{id}")
+    public void delete(@PathVariable Integer id) {
+        this.service.deleteById(id);
+    }
 }
