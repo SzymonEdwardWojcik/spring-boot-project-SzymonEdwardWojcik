@@ -1,11 +1,13 @@
 package com.codecool.boot.teatype;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.codecool.boot.tea.Tea;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name="TYPES")
 public class TeaType {
 
     @Id
@@ -13,14 +15,8 @@ public class TeaType {
     private Integer id;
     private String type;
     private String origin;
-
-    public TeaType() {
-    }
-
-    public TeaType (String type, String origin) {
-        this.type = type;
-        this.origin = origin;
-    }
+    @OneToMany(mappedBy="teaType")
+    private List<Tea> teas = new ArrayList<>();
 
     public Integer getId() {
         return id;
