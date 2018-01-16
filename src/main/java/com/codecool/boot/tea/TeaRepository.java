@@ -1,4 +1,7 @@
 package com.codecool.boot.tea;
 
-public interface TeaRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface TeaRepository extends CrudRepository<Tea, Integer> {
+
 }
