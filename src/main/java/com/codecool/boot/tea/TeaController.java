@@ -6,20 +6,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/teas")
 public class TeaController {
 
-    private TeaRepository repository;
+    private TeaService service;
 
-    public TeaController(TeaRepository repository) {
-        this.repository = repository;
+    public TeaController(TeaService service) {
+        this.service = service;
     }
 
     @GetMapping(path = "")
     public Iterable<Tea> index() {
-        return this.repository.findAll();
+        return this.service.findAll();
     }
 
     @PostMapping(path = "")
     public Tea create(@RequestBody Tea tea) {
-        this.repository.save(tea);
+        this.service.save(tea);
         return tea;
     }
 }
