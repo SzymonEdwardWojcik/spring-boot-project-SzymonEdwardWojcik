@@ -23,13 +23,12 @@ public class TeaTypeService implements Service<TeaType> {
 
     @Override
     public TeaType save(TeaType teaType) {
-        this.repository.save(teaType);
-        return teaType;
+        return this.repository.save(teaType);
     }
 
     @Override
-    public void delete(TeaType teaType) {
-        this.repository.delete(teaType);
+    public TeaType put(TeaType teaType) {
+        return this.repository.save(teaType);
     }
 
     @Override
