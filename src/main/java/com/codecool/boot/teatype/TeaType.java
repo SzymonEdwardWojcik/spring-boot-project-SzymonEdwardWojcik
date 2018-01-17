@@ -19,7 +19,7 @@ public class TeaType {
     private String type;
     @NotEmpty
     private String origin;
-    @OneToMany(mappedBy="teaType")
+    @OneToMany(mappedBy="teaType", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonIgnoreProperties("teaType")
     private List<Tea> teas = new ArrayList<>();
 
