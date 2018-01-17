@@ -31,8 +31,15 @@ public class TeaService implements Service<Tea>{
         return this.repository.save(tea);
     }
 
+    @Deprecated
     @Override
     public void deleteById(Integer id) {
         this.repository.delete(id);
+    }
+
+    public void archive(Integer id) {
+        Tea tea = this.repository.findOne(id);
+        tea.setArchived(true);
+        this.repository.save(tea);
     }
 }
