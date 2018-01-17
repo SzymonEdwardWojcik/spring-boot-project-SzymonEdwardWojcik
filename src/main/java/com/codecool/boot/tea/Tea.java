@@ -1,7 +1,9 @@
 package com.codecool.boot.tea;
 
 import com.codecool.boot.teatype.TeaType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -12,10 +14,13 @@ public class Tea {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private Integer price;
     @ManyToOne
     @JoinColumn(name="type_id")
+    @JsonIgnoreProperties("teas")
     private TeaType teaType;
 
     public Integer getId() {
