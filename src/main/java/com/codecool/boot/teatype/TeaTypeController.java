@@ -33,8 +33,13 @@ public class TeaTypeController {
         return this.service.put(teaType);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @Deprecated
     public void delete(@PathVariable Integer id) {
         this.service.deleteById(id);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void archive(@PathVariable Integer id) {
+        this.service.archive(id);
     }
 }
