@@ -1,9 +1,11 @@
 package com.codecool.boot.tea;
 
 import com.codecool.boot.teatype.TeaType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
@@ -22,6 +24,8 @@ public class Tea {
     @JoinColumn(name="type_id")
     @JsonIgnoreProperties("teas")
     private TeaType teaType;
+    @JsonIgnore
+    private boolean isArchived = false;
 
     public Integer getId() {
         return id;
@@ -53,5 +57,13 @@ public class Tea {
 
     public void setTeaType(TeaType teaType) {
         this.teaType = teaType;
+    }
+
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
     }
 }
