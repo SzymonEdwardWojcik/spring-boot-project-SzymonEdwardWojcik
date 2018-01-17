@@ -7,4 +7,5 @@ public interface Service<T> {
     T save(T t);
     T put(T t);
     void deleteById(Integer id);
+    void archive(Integer id);
 }
