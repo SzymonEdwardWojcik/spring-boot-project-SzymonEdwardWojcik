@@ -1,6 +1,7 @@
 package com.codecool.boot.teatype;
 
 import com.codecool.boot.tea.Tea;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -22,6 +23,8 @@ public class TeaType {
     @OneToMany(mappedBy="teaType", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonIgnoreProperties("teaType")
     private List<Tea> teas = new ArrayList<>();
+    @JsonIgnore
+    private boolean isArchived = false;
 
     public Integer getId() {
         return id;
@@ -45,5 +48,13 @@ public class TeaType {
 
     public void setOrigin(String origin) {
         this.origin = origin;
+    }
+
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
     }
 }
