@@ -1,6 +1,8 @@
 package com.codecool.boot.teatype;
 
 import com.codecool.boot.tea.Tea;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,9 +15,12 @@ public class TeaType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty
     private String type;
+    @NotEmpty
     private String origin;
     @OneToMany(mappedBy="teaType")
+    @JsonIgnoreProperties("teaType")
     private List<Tea> teas = new ArrayList<>();
 
     public Integer getId() {
