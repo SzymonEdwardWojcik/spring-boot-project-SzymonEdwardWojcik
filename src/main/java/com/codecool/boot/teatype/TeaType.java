@@ -3,6 +3,7 @@ package com.codecool.boot.teatype;
 import com.codecool.boot.tea.Tea;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.gson.Gson;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -64,5 +65,10 @@ public class TeaType {
 
     public void setTeas(List<Tea> teas) {
         this.teas = teas;
+    }
+
+    public String toString() {
+        String str = String.format("Object TeaType with attributes:\n'type': %s, 'origin': %s", this.type, this.origin);
+        return str;
     }
 }
