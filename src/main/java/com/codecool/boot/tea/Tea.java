@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="TEAS")
@@ -18,7 +19,7 @@ public class Tea {
     private Integer id;
     @NotEmpty
     private String name;
-    @NotEmpty
+    @NotNull
     private Integer price;
     @ManyToOne
     @JoinColumn(name="type_id")
