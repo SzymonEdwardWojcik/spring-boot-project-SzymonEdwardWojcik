@@ -1,5 +1,6 @@
 package com.codecool.boot.tea;
 
+import com.codecool.boot.common.LoggerInterface;
 import com.codecool.boot.common.Service;
 import com.codecool.boot.common.exceptions.NoSuchIdException;
 
@@ -7,13 +8,16 @@ import com.codecool.boot.common.exceptions.NoSuchIdException;
 public class TeaService implements Service<Tea>{
 
     TeaRepository repository;
+    private LoggerInterface logger;
 
-    public TeaService(TeaRepository repository) {
+    public TeaService(TeaRepository repository, LoggerInterface logger) {
         this.repository = repository;
+        this.logger = logger;
     }
 
     @Override
     public Iterable<Tea> findAll() {
+        logger.logReadAll();
         return this.repository.findAll();
     }
 
@@ -24,17 +28,23 @@ public class TeaService implements Service<Tea>{
         if (tea == null) {
             throw new NoSuchIdException();
         }
+        logger.logReadOne(tea.toString());
         return tea;
     }
 
     @Override
     public Tea save(Tea tea) {
-        return this.repository.save(tea);
+        this.repository.save(tea);
+        logger.logCreate(tea.toString());
+        return tea;
     }
 
     @Override
     public Tea put(Tea tea) {
-        return this.repository.save(tea);
+
+        this.repository.save(tea);
+        logger.logUpdate(tea.toString());
+        return tea;
     }
 
     @Deprecated
@@ -47,5 +57,6 @@ public class TeaService implements Service<Tea>{
         Tea tea = this.repository.findOne(id);
         tea.setArchived(true);
         this.repository.save(tea);
+        logger.logArchive(tea.toString());
     }
 }
