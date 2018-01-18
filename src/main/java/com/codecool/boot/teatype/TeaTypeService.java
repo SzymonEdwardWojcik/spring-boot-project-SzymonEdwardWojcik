@@ -1,6 +1,7 @@
 package com.codecool.boot.teatype;
 
 import com.codecool.boot.common.Service;
+import com.codecool.boot.common.exceptions.NoSuchIdException;
 import com.codecool.boot.tea.Tea;
 
 @org.springframework.stereotype.Service
@@ -18,8 +19,13 @@ public class TeaTypeService implements Service<TeaType> {
     }
 
     @Override
-    public TeaType findOne(Integer id) {
-        return this.repository.findOne(id);
+    public TeaType findOne(Integer id) throws NoSuchIdException {
+
+        TeaType teaType = this.repository.findOne(id);
+        if (teaType == null) {
+            throw new NoSuchIdException();
+        }
+        return teaType;
     }
 
     @Override
