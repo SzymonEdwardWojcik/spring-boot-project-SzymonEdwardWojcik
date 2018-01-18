@@ -34,7 +34,4 @@ public class ApiError {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public static class NoSuchIdException extends Exception {
-    }
 }
