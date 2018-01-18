@@ -3,6 +3,7 @@ package com.codecool.boot.tea;
 import com.codecool.boot.teatype.TeaType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.gson.Gson;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Value;
@@ -66,5 +67,10 @@ public class Tea {
 
     public void setArchived(boolean archived) {
         isArchived = archived;
+    }
+
+    public String toString() {
+        String str = String.format("Object TeaT with attributes:\n'name': %s, 'price': %d", this.name, this.price);
+        return str;
     }
 }
