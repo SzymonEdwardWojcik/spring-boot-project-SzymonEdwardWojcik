@@ -40,6 +40,13 @@ public class TeaTypeService implements Service<TeaType> {
     public void archive(Integer id) {
         TeaType teaType = this.repository.findOne(id);
         teaType.setArchived(true);
+        archiveTeas(teaType);
         this.repository.save(teaType);
+    }
+
+    public void archiveTeas(TeaType teaType) {
+        for (Tea tea : teaType.getTeas()) {
+            tea.setArchived(true);
+        }
     }
 }
