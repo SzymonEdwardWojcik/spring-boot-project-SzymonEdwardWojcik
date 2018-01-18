@@ -1,5 +1,6 @@
 package com.codecool.boot.teatype;
 
+import com.codecool.boot.common.exceptions.NoSuchIdException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,7 +19,7 @@ public class TeaTypeController {
     }
 
     @GetMapping(path = "/{id}")
-    public TeaType show(@PathVariable Integer id) {
+    public TeaType show(@PathVariable Integer id) throws NoSuchIdException {
         return this.service.findOne(id);
     }
 
