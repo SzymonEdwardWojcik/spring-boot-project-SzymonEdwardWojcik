@@ -1,5 +1,6 @@
 package com.codecool.boot.tea;
 
+import com.codecool.boot.common.exceptions.NoSuchIdException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,6 +16,11 @@ public class TeaController {
     @GetMapping(path = "")
     public Iterable<Tea> index() {
         return this.service.findAll();
+    }
+
+    @GetMapping(path = "/{id}")
+    public Tea show(@PathVariable Integer id) throws NoSuchIdException {
+        return this.service.findOne(id);
     }
 
     @PostMapping(path = "")
