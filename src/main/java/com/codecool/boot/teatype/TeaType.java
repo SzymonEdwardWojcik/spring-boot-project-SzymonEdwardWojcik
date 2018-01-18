@@ -57,4 +57,12 @@ public class TeaType {
     public void setArchived(boolean archived) {
         isArchived = archived;
     }
+
+    public List<Tea> getTeas() {
+        return teas;
+    }
+
+    public void setTeas(List<Tea> teas) {
+        this.teas = teas;
+    }
 }
