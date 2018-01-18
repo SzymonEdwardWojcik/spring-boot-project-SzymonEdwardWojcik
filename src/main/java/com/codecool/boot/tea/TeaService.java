@@ -1,7 +1,6 @@
 package com.codecool.boot.tea;
 
 import com.codecool.boot.common.Service;
-import com.codecool.boot.teatype.TeaType;
 
 @org.springframework.stereotype.Service
 public class TeaService implements Service<Tea>{
