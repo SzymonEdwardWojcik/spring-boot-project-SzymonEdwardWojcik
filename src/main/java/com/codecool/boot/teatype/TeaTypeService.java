@@ -5,6 +5,9 @@ import com.codecool.boot.common.Service;
 import com.codecool.boot.common.exceptions.NoSuchIdException;
 import com.codecool.boot.tea.Tea;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @org.springframework.stereotype.Service
 public class TeaTypeService implements Service<TeaType> {
 
@@ -18,15 +21,20 @@ public class TeaTypeService implements Service<TeaType> {
 
     @Override
     public Iterable<TeaType> findAll() {
+
+        Iterable<TeaType> types = this.repository.findAllByIsArchivedIsFalse();
+        for (TeaType teaType : types) {
+            removeArchivedTeas(teaType);
+        }
         logger.logReadAll();
-        return this.repository.findAll();
+        return types;
     }
 
     @Override
     public TeaType findOne(Integer id) throws NoSuchIdException {
 
         TeaType teaType = this.repository.findOne(id);
-        if (teaType == null) {
+        if (teaType == null || teaType.isArchived()) {
             throw new NoSuchIdException();
         }
         logger.logReadOne(teaType.toString());
@@ -66,5 +74,12 @@ public class TeaTypeService implements Service<TeaType> {
         for (Tea tea : teaType.getTeas()) {
             tea.setArchived(true);
         }
+    }
+
+    public void removeArchivedTeas(TeaType teaType) {
+        List<Tea> teas = teaType.getTeas().stream()
+                                          .filter(tea -> !tea.isArchived())
+                                          .collect(Collectors.toList());
+        teaType.setTeas(teas);
     }
 }
