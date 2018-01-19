@@ -3,7 +3,6 @@ package com.codecool.boot.teatype;
 import com.codecool.boot.tea.Tea;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.google.gson.Gson;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
