@@ -67,7 +67,7 @@ public class TeaType {
     }
 
     public String toString() {
-        String str = String.format("Object TeaType with attributes:\n'type': %s, 'origin': %s", this.type, this.origin);
+        String str = String.format("TeaType with attributes:\n'type': %s, 'origin': %s", this.type, this.origin);
         return str;
     }
 }

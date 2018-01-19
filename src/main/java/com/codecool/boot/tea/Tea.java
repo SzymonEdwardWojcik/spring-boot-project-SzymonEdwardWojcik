@@ -22,6 +22,7 @@ public class Tea {
     @ManyToOne
     @JoinColumn(name="type_id")
     @JsonIgnoreProperties("teas")
+    @NotNull
     private TeaType teaType;
     @JsonIgnore
     private boolean isArchived = false;
@@ -67,7 +68,7 @@ public class Tea {
     }
 
     public String toString() {
-        String str = String.format("Object TeaT with attributes:\n'name': %s, 'price': %d", this.name, this.price);
+        String str = String.format("Tea with attributes:\n'name': %s, 'price': %d", this.name, this.price);
         return str;
     }
 }
