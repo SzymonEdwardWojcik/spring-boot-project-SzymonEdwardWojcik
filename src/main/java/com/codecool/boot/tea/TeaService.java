@@ -4,10 +4,13 @@ import com.codecool.boot.common.LoggerInterface;
 import com.codecool.boot.common.Service;
 import com.codecool.boot.common.exceptions.NoSuchIdException;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @org.springframework.stereotype.Service
 public class TeaService implements Service<Tea>{
 
-    TeaRepository repository;
+    private TeaRepository repository;
     private LoggerInterface logger;
 
     public TeaService(TeaRepository repository, LoggerInterface logger) {
@@ -17,15 +20,22 @@ public class TeaService implements Service<Tea>{
 
     @Override
     public Iterable<Tea> findAll() {
+        Iterable<Tea> allTeas = this.repository.findAllByIsArchivedIsFalse();
+        Set<Tea> availableTeas = new HashSet<>();
+        for (Tea tea : allTeas) {
+            if (!tea.getTeaType().isArchived()) {
+                availableTeas.add(tea);
+            }
+        }
         logger.logReadAll();
-        return this.repository.findAll();
+        return availableTeas;
     }
 
     @Override
     public Tea findOne(Integer id) throws NoSuchIdException {
 
         Tea tea = this.repository.findOne(id);
-        if (tea == null) {
+        if (tea == null || tea.isArchived() || tea.getTeaType().isArchived()) {
             throw new NoSuchIdException();
         }
         logger.logReadOne(tea.toString());
